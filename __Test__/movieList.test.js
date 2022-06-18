@@ -45,13 +45,20 @@ test('Crossing off movie', async () => {
 test('Movie deleted notification appears', async () => {
     await driver.findElement(By.xpath('//input[@placeholder="Add Movie"]')).sendKeys('Billy Madison');
     await driver.findElement(By.xpath('//button[text()="Add"]')).click();
-    const movie = await driver.findElement(By.xpath('//span[text()="Billy Madison"]'))
+    const movie = await driver.findElement(By.xpath('//span[text()="Billy Madison"]'));
     
     await driver.findElement(By.xpath('//button[@id="BillyMadison"]')).click();
     const notificationAlert = await driver.findElement(By.xpath('//aside[@id="message"]'))
 
     const isDisplayed = notificationAlert.isDisplayed();
     expect(isDisplayed).toBeTruthy
+})
+
+
+test('Add movie placeholder reappears', async () => {
+    await driver.findElement(By.xpath('//input[@placeholder="Add Movie"]')).sendKeys('Billy Madison');
+    await driver.findElement(By.xpath('//button[text()="Add"]')).click();
+    await driver.findElement(By.xpath('//input[@placeholder="Add Movie"]'));
 })
 
 
